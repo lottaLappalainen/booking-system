@@ -2,6 +2,23 @@ import { Low, Memory } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { v1 as uuidV1 } from 'uuid';
 
+import mongoose from 'mongoose';
+
+export const connectToMongoDB = async () => {
+  try {
+    const mongoURI = process.env.MONGO_URI;
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    process.exit(1);
+  }
+};
+
+
 export class DbError extends Error {}
 export class Db {
   static #db = null;

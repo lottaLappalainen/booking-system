@@ -8,6 +8,9 @@ import { fileURLToPath } from 'url';
 import { Db } from './db/db.mjs';
 import { getCurrentUser } from './middleware/auth.mjs';
 import { setupRoutes } from './router.mjs';
+import { connectToMongoDB } from './db/db.mjs';
+
+connectToMongoDB(); 
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 const publicDir = resolve(`${currentDir}`, 'public');

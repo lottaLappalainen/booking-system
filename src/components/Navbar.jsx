@@ -38,7 +38,6 @@ const Navbar = () => {
         {userRole === 'customer' && (
           <React.Fragment>
             <li><Link to="/">Booking</Link></li>
-            <li><Link to="/bookings" >Bookings</Link></li>
             <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
           </React.Fragment>
         )}

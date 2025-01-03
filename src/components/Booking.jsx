@@ -1,39 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { fetchBookings, addBooking } from "../actions/bookingActions";
 
 const Booking = () => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [bookedDates, setBookedDates] = useState([]);
-  const role = "customer";
+  const [bookingName, setBookingName] = useState("");
+  const dispatch = useDispatch();
+  const { bookings, role, user } = useSelector((state) => ({
+    bookings: state.bookings,
+    role: "customer", // Replace this with the actual user role from the state if available
+    user: state.auth, // Replace with the actual user object from the state
+  }));
+
+  useEffect(() => {
+    dispatch(fetchBookings());
+  }, [dispatch]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   const handleBooking = () => {
-    if (
-      selectedDate &&
-      !bookedDates.includes(selectedDate.toDateString()) &&
-      selectedDate >= new Date()
-    ) {
-      setBookedDates((prevDates) => [...prevDates, selectedDate.toDateString()]);
+    if (selectedDate && bookingName && selectedDate >= new Date()) {
+      dispatch(addBooking(selectedDate, bookingName, user.name));
     }
   };
 
   const tileClassName = ({ date, view }) => {
-    if (view === "month" && bookedDates.includes(date.toDateString())) {
+    if (view === "month" && bookings.includes(date.toDateString())) {
       return "booked-day";
     }
     return null;
   };
 
   const tileDisabled = ({ date, view }) => {
-    // Disable dates in the past and already booked dates
     return (
       view === "month" &&
       (date < new Date().setHours(0, 0, 0, 0) ||
-        bookedDates.includes(date.toDateString()))
+        bookings.includes(date.toDateString()))
     );
   };
 
@@ -50,9 +56,15 @@ const Booking = () => {
         Selected Date:{" "}
         {selectedDate ? selectedDate.toDateString() : "None"}
       </p>
+      <input
+        type="text"
+        placeholder="Enter booking name"
+        value={bookingName}
+        onChange={(e) => setBookingName(e.target.value)}
+      />
       <button
         onClick={handleBooking}
-        disabled={!selectedDate || role !== "customer"}
+        disabled={!selectedDate || !bookingName || role !== "customer"}
       >
         Book
       </button>
