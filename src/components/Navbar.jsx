@@ -1,13 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setNotification } from '../actions/notificationActions';
+import { logoutUser } from '../actions/authActions';
 
 const Navbar = () => {
+  const navigateTo = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.auth);
 
-  const userRole = "customer"
+  const userRole = user.role 
 
   const handleLogout = async () => {
-    console.log("logout")
+    try {
+      dispatch(setNotification({ message: 'Logging out...', stateType: 'auth', requestStatus: 'loading' }));
+
+      await dispatch(logoutUser());
+
+      dispatch(setNotification({ message: 'Logout successful', stateType: 'auth', requestStatus: 'success' }));
+
+      navigateTo('/login');
+    } catch (error) {
+      console.error('Error:', error);
+      dispatch(setNotification({ message: 'Problem with logging out', stateType: 'auth', requestStatus: 'error' }));
+    }
   };
 
   return (
