@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { fetchBookings, addBooking } from "../actions/bookingActions";
-import { setNotification } from "../actions/notificationActions";
 
 const Booking = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -50,16 +49,9 @@ const Booking = () => {
 
   const handleBooking = () => {
     if (selectedDate && selectedTime && bookingName) {
-      try {
-        dispatch(setNotification({ message: 'Creating booking...', requestStatus: 'loading' }));
-        const dateString = selectedDate.toDateString();
-        dispatch(addBooking(dateString, bookingName, user.name, selectedTime));
-        dispatch(setNotification({ message: 'Booking was created succesfuly', requestStatus: 'success' }));
-      }
-      catch (error) {
-        dispatch(setNotification({ message: 'Error in booking creation', requestStatus: 'error' }));
-        console.error("error creating a booking", error)
-      }
+      const dateString = selectedDate.toISOString();
+      dispatch(addBooking(dateString, bookingName, user.name, selectedTime));
+      console.log("here", dateString, bookingName, user.name, selectedTime)
       setSelectedDate(null);
       setSelectedTime("");
       setAvailableTimes([]);

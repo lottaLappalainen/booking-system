@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setNotification } from "./notificationActions";
 
 export const FETCH_BOOKINGS = "FETCH_BOOKINGS";
 export const FETCH_BOOKINGS_BY_DATE = "FETCH_BOOKINGS_BY_DATE";
@@ -30,13 +31,17 @@ export const fetchBookingsByDate = (date) => async (dispatch) => {
 
 export const addBooking = (date, bookingName, userName, bookingTime) => async (dispatch) => {
   try {
+    dispatch(setNotification({ message: 'Creating booking...', requestStatus: 'loading' }));
     console.log(date, bookingName, userName, bookingTime)
     const response = await axios.post("http://localhost:3001/api/bookings", { date, bookingName, userName, bookingTime });
     dispatch({
       type: ADD_BOOKING,
       payload: response.data,
     });
+    console.log(response)
+    dispatch(setNotification({ message: 'Booking was created succesfuly', requestStatus: 'success' }));
   } catch (error) {
+    dispatch(setNotification({ message: 'Error in booking creation', requestStatus: 'error' }));
     console.error("Error adding booking:", error);
   }
 };

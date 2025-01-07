@@ -31,15 +31,17 @@ export const getBookingsByDate = async (req, res) => {
 };
 
 export const createBooking = async (req, res) => {
+    
     const { date, bookingName, userName, bookingTime } = req.body;
+    console.log('Request body:', req.body);
+
   
     if (!date || !bookingName || !userName || !bookingTime) {
-      return res.status(400).json({ error: 'Date, Booking Name, and User Name, Booking time are required' });
+      return res.status(400).json({ error: 'Date, Booking Name, and User Name and Booking time are required' });
     }
   
     try {
-      const bookingDate = new Date(date);
-      const newBooking = new Booking({ date: bookingDate, bookingName, userName, bookingTime });
+      const newBooking = new Booking({ date, bookingName, userName, bookingTime });
       await newBooking.save();
       res.status(201).json(newBooking);
     } catch (error) {
