@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "58966aa0989011efac0699f0308d4dbc",
+      "name": "Admin",
+      "email": "admin@email.com",
+      "password": "$2a$10$JBCT.bDkv14tMFpfl74AyOJxrysEk634BeVt.zPoCPTf9RxS4b2Ga",
+      "role": "admin"
+    },
+    {
+      "id": "58bbf400989011efac0699f0308d4dbc",
+      "name": "Customer",
+      "email": "customer@email.com",
+      "password": "$2a$10$1AiATUbVDEZl0xwU.AU9fOB.c2yUsDFSHXa/.olZsNqIVk9L96DI2",
+      "role": "customer"
+    },
+    {
+      "id": "dd83d300c9f111ef9734d3d06d11f719",
+      "name": "lotta",
+      "email": "lotta.lappalainen@tuni.fi",
+      "password": "$2a$10$YhywJRlRA8OShT5gDs/7kueAc5kfd7VKZDjA.IBI6tCRXoJxuW0Aq",
+      "role": "customer"
+    }
+  ]
+}

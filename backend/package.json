@@ -1,0 +1,63 @@
+{
+  "name": "assignment-backend",
+  "version": "2.0.0",
+  "description": "Advanced Web Front-ends Assignment Backend (spring 2023)",
+  "main": "index.mjs",
+  "private": true,
+  "engines": {
+    "node": ">= 16.0.0"
+  },
+  "scripts": {
+    "start": "nodemon index.mjs",
+    "nodemon": "nodemon index.mjs",
+    "reset-db": "node db/reset-db.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@course-gitlab.tuni.fi:ITC/CS/comp.cs.520/assignment-backend.git"
+  },
+  "author": "Janne Miilunpalo <janne.miilunpalo@tuni.fi>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "prettier-standard": "^16.4.1",
+    "semistandard": "^16.0.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "lowdb": "^5.1.0",
+    "mongoose": "^8.9.3",
+    "morgan": "^1.10.0",
+    "uuid": "^9.0.0"
+  },
+  "semistandard": {
+    "globals": [
+      "after",
+      "afterEach",
+      "before",
+      "beforeEach",
+      "describe",
+      "it"
+    ],
+    "ignore": [
+      "**/node_modules/"
+    ]
+  }
+}
