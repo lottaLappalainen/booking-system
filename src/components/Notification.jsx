@@ -10,13 +10,13 @@ const Notification = () => {
       setIsVisible(true);
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 5000);
+      }, 10000);
       return () => clearTimeout(timer);
     }
   }, [notification]);
 
   return isVisible ? (
-    <div data-testid={`${notification.stateType}-${notification.requestStatus}-notification`}>
+    <div>
       {notification.message}
     </div>
   ) : null;

@@ -39,7 +39,6 @@ export const createBooking = async (req, res) => {
   
     try {
       const bookingDate = new Date(date);
-  
       const newBooking = new Booking({ date: bookingDate, bookingName, userName, bookingTime });
       await newBooking.save();
       res.status(201).json(newBooking);

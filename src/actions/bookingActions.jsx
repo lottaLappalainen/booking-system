@@ -30,6 +30,7 @@ export const fetchBookingsByDate = (date) => async (dispatch) => {
 
 export const addBooking = (date, bookingName, userName, bookingTime) => async (dispatch) => {
   try {
+    console.log(date, bookingName, userName, bookingTime)
     const response = await axios.post("http://localhost:3001/api/bookings", { date, bookingName, userName, bookingTime });
     dispatch({
       type: ADD_BOOKING,

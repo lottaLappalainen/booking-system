@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import Login from './components/Login';
-import Bookings from './components/Bookings';
+import Bookingslist from './components/Bookingslist.jsx';
 import Booking from './components/Booking';
 import Notification from './components/Notification';
 import { fetchUserStatus} from './actions/authActions.jsx';
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/" element={<Booking />} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
-        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/bookings" element={<Bookingslist />} />
       </Routes>
     </div>
     </>

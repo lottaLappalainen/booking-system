@@ -4,7 +4,6 @@ const bookingSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
-    unique: true, 
   },
   userName: {
     type: String,

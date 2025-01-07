@@ -6,8 +6,10 @@ const bookingReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOOKINGS:
         return action.payload.map((booking) => ({
-            date: new Date(booking.date).toDateString(),  
-            time: booking.bookingTime,  
+            date: new Date(booking.date).toDateString(), 
+            time: booking.bookingTime,
+            name: booking.bookingName,
+            userName: booking.userName,
           }));
     case FETCH_BOOKINGS_BY_DATE:
       return action.payload.map((booking) => new Date(booking.date).toDateString());

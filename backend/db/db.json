@@ -13,6 +13,13 @@
       "email": "customer@email.com",
       "password": "$2a$10$1AiATUbVDEZl0xwU.AU9fOB.c2yUsDFSHXa/.olZsNqIVk9L96DI2",
       "role": "customer"
+    },
+    {
+      "id": "8a680c60cd0511ef875ef93777bdf156",
+      "name": "lotta",
+      "email": "lapejoou@gmail.com",
+      "password": "$2a$10$4xDIQ6jI/a0G4oiz4kva0On9D8GCFf3Si0Fd9rKzUfaGc.//wo3gG",
+      "role": "customer"
     }
   ]
 }
