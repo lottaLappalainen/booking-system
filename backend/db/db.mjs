@@ -3,6 +3,10 @@ import { JSONFile } from 'lowdb/node';
 import { v1 as uuidV1 } from 'uuid';
 
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 export const connectToMongoDB = async () => {
   try {
