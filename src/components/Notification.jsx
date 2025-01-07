@@ -6,11 +6,12 @@ const Notification = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (notification) {
+    if (notification.message) {
+        console.log(notification)
       setIsVisible(true);
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 15000); // Show for 15 seconds
+      }, 15000); 
       return () => clearTimeout(timer);
     }
   }, [notification]);
@@ -27,6 +28,7 @@ const Notification = () => {
         return '';
     }
   };
+  console.log(isVisible)
 
   return isVisible && notification ? (
     <div className={`notification ${getStatusClass(notification.requestStatus)}`}>
@@ -61,12 +63,6 @@ const Notification = () => {
           .notification-loading {
             background-color: #ffc107; /* Yellow for loading */
             color: black;
-          }
-
-          .notification.hidden {
-            opacity: 0;
-            transform: translateY(-20px);
-            pointer-events: none;
           }
         `}
       </style>
