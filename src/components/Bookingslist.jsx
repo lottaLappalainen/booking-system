@@ -8,9 +8,8 @@ const Bookingslist = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedBookings, setSelectedBookings] = useState([]);
   const bookings = useSelector((state) => state.bookings || []);
+  const TIME_SLOTS = useSelector((state) => state.timeSlots);
   const dispatch = useDispatch();
-
-  const TIME_SLOTS = ["12:00", "14:00", "16:00", "18:00", "20:00"];
 
   useEffect(() => {
     dispatch(fetchBookings());
@@ -23,10 +22,21 @@ const Bookingslist = () => {
 
   const handleDateClick = (date) => {
     const dailyBookings = getBookingsForDate(date);
-    console.log(dailyBookings)
+  
+    const sortedBookings = dailyBookings.sort((a, b) => {
+      const [aHours, aMinutes] = a.time.split(":").map(Number);
+      const [bHours, bMinutes] = b.time.split(":").map(Number);
+  
+      const aTotalMinutes = aHours * 60 + aMinutes;
+      const bTotalMinutes = bHours * 60 + bMinutes;
+  
+      return aTotalMinutes - bTotalMinutes; 
+    });
+  
     setSelectedDate(date.toDateString());
-    setSelectedBookings(dailyBookings);
+    setSelectedBookings(sortedBookings);
   };
+  
 
   const tileClassName = ({ date, view }) => {
     if (view !== "month") return null;

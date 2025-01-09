@@ -10,12 +10,11 @@ const Booking = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingName, setBookingName] = useState("");
   const dispatch = useDispatch();
-  const { bookings, user } = useSelector((state) => ({
+  const { bookings, user, TIME_SLOTS } = useSelector((state) => ({
     bookings: state.bookings || [],
     user: state.auth,
+    TIME_SLOTS: state.timeSlots
   }));
-
-  const TIME_SLOTS = ["12:00", "14:00", "16:00", "18:00", "20:00"];
 
   useEffect(() => {
     dispatch(fetchBookings());
