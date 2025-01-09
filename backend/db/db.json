@@ -20,6 +20,13 @@
       "email": "lapejoou@gmail.com",
       "password": "$2a$10$4xDIQ6jI/a0G4oiz4kva0On9D8GCFf3Si0Fd9rKzUfaGc.//wo3gG",
       "role": "customer"
+    },
+    {
+      "id": "374c3b50ce9011ef9f3bc9c802493b72",
+      "name": "moikkuli",
+      "email": "moikkuli@email.com",
+      "password": "$2a$10$PLDWOMonL2kCU11kWNVzaeRNbiHeQs8m8uIEgG2.pdJbJAFx.hl..",
+      "role": "customer"
     }
   ]
 }

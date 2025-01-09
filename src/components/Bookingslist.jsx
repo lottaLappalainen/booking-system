@@ -23,6 +23,7 @@ const Bookingslist = () => {
 
   const handleDateClick = (date) => {
     const dailyBookings = getBookingsForDate(date);
+    console.log(dailyBookings)
     setSelectedDate(date.toDateString());
     setSelectedBookings(dailyBookings);
   };
@@ -39,8 +40,8 @@ const Bookingslist = () => {
   };
 
   return (
-    <div data-testid="main-container">
-      <h1>Bookings Calendar</h1>
+    <div className="booking-container">
+      <h1>Bookings</h1>
       <p>Click on a date to view bookings</p>
       <Calendar
         onClickDay={handleDateClick}
@@ -65,12 +66,18 @@ const Bookingslist = () => {
       )}
       <style>
         {`
+          .booking-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
           .day-full {
-            background-color: #ffc2c2; /* Pastel red */
+            background-color:rgb(212, 124, 124);
             color: white;
           }
           .day-partial {
-            background-color: #fff5b7; /* Pastel yellow */
+            background-color: #fff5b7; 
             color: black;
           }
           .booking-details {

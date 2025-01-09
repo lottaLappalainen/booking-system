@@ -9,7 +9,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth);
 
-  const userRole = user.role 
+  const userRole = user.role;
 
   const handleLogout = async () => {
     try {
@@ -27,31 +27,84 @@ const Navbar = () => {
   };
 
   return (
-    <div data-testid="navbar-container">
-      <ul>
-        {userRole === 'guest' && (
-          <React.Fragment>
-            <li><Link to="/login" data-testid="login-link">Login</Link></li>
-            <li><Link to="/register" data-testid="register-link">Register</Link></li>
-          </React.Fragment>
-        )}
-        {userRole === 'customer' && (
-          <React.Fragment>
-            <li><Link to="/">Booking</Link></li>
-            <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
-          </React.Fragment>
-        )}
-        {userRole === 'admin' && (
-          <React.Fragment>
-            <li><Link to="/bookings" >Bookings</Link></li>
-            <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
-          </React.Fragment>
-        )}
-      </ul>
-      <div data-testid="role-value">
-        {userRole}
+    <>
+      <div className="navbar-container" data-testid="navbar-container">
+        <ul className="navbar-list">
+          {userRole === 'guest' && (
+            <>
+              <li><Link to="/login" data-testid="login-link">Login</Link></li>
+              <li><Link to="/register" data-testid="register-link">Register</Link></li>
+            </>
+          )}
+          {userRole === 'customer' && (
+            <>
+              <li><Link to="/">Booking</Link></li>
+              <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
+            </>
+          )}
+          {userRole === 'admin' && (
+            <>
+              <li><Link to="/bookings">Bookings</Link></li>
+              <li><Link to="/settings">Settings</Link></li>
+              <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
+            </>
+          )}
+        </ul>
+        <div className="role-display" data-testid="role-value">
+          Role: {userRole}
+        </div>
       </div>
-    </div>
+      <div className="navbar-spacing"></div>
+
+      <style>
+        {`
+          .navbar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); 
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+          }
+
+          .navbar-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+          }
+
+          .navbar-list a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px; 
+            transition: color 0.3s ease;
+          }
+
+          .navbar-list a:hover {
+            color: rgba(105, 226, 202, 0.9); 
+          }
+
+          .role-display {
+            font-size: 16px;
+            color: rgba(105, 226, 202, 0.9);
+            margin-right: 50px;
+          }
+
+          .navbar-spacing {
+            height: 30px;
+          }
+
+        `}
+      </style>
+    </>
   );
 };
 

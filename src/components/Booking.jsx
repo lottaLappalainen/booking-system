@@ -34,7 +34,7 @@ const Booking = () => {
 
     if (bookedTimes.length === TIME_SLOTS.length) return "day-full";
     if (bookedTimes.length > 0) return "day-partial";
-    return "day-available";
+    return null;
   };
 
   const handleDateChange = (date) => {
@@ -44,33 +44,32 @@ const Booking = () => {
 
     setSelectedDate(date);
     setAvailableTimes(freeTimes);
-    setSelectedTime(""); 
+    setSelectedTime("");
   };
 
   const handleBooking = () => {
     if (selectedDate && selectedTime && bookingName) {
       const dateString = selectedDate.toISOString();
       dispatch(addBooking(dateString, bookingName, user.name, selectedTime));
-      console.log("here", dateString, bookingName, user.name, selectedTime)
       setSelectedDate(null);
       setSelectedTime("");
       setAvailableTimes([]);
       setBookingName("");
+      dispatch(fetchBookings());
     } else {
       alert("Please enter a booking name and select a time.");
     }
   };
 
   return (
-    <div data-testid="main-container">
+    <div className="booking-container">
       <h1>Booking Calendar</h1>
       <Calendar
+        className="calendar"
         onClickDay={handleDateChange}
         tileClassName={tileClassName}
       />
-      <p>
-        Selected Date: {selectedDate ? selectedDate.toDateString() : "None"}
-      </p>
+      <p>Selected Date: {selectedDate ? selectedDate.toDateString() : "None"}</p>
       {selectedDate && availableTimes.length > 0 && (
         <div>
           <h3>Available Times</h3>
@@ -105,28 +104,33 @@ const Booking = () => {
       )}
       <style>
         {`
+          .booking-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
           .day-full {
-            background-color: #ffc2c2; /* Pastel red */
+            background-color:rgb(212, 124, 124); 
             color: white;
           }
           .day-partial {
-            background-color: #fff5b7; /* Pastel yellow */
+            background-color: #fff5b7; 
             color: black;
           }
-          .day-available {
-            background-color: #c2ffc2; /* Pastel green */
-            color: black;
-          }
-          .day-full:hover, .day-partial:hover, .day-available:hover {
+          .day-full:hover,
+          .day-partial:hover,
+          .day-available:hover {
             opacity: 0.8;
           }
-          select, input {
+          select,
+          input {
             margin: 10px 0;
           }
         `}
       </style>
     </div>
   );
-};
+}  
 
 export default Booking;

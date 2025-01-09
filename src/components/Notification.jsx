@@ -7,7 +7,6 @@ const Notification = () => {
 
   useEffect(() => {
     if (notification.message) {
-        console.log(notification)
       setIsVisible(true);
       const timer = setTimeout(() => {
         setIsVisible(false);
@@ -28,7 +27,6 @@ const Notification = () => {
         return '';
     }
   };
-  console.log(isVisible)
 
   return isVisible && notification ? (
     <div className={`notification ${getStatusClass(notification.requestStatus)}`}>
