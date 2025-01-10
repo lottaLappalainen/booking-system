@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNotification } from '../actions/notificationActions';
 import { logoutUser } from '../actions/authActions';
@@ -7,7 +7,7 @@ import { logoutUser } from '../actions/authActions';
 const Navbar = () => {
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.auth);
+  const user = useSelector((state) => state.auth);
 
   const userRole = user.role;
 
@@ -32,21 +32,76 @@ const Navbar = () => {
         <ul className="navbar-list">
           {userRole === 'guest' && (
             <>
-              <li><Link to="/login" data-testid="login-link">Login</Link></li>
-              <li><Link to="/register" data-testid="register-link">Register</Link></li>
+              <li>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? 'active-link' : undefined)}
+                  data-testid="login-link"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) => (isActive ? 'active-link' : undefined)}
+                  data-testid="register-link"
+                >
+                  Register
+                </NavLink>
+              </li>
             </>
           )}
           {userRole === 'customer' && (
             <>
-              <li><Link to="/">Booking</Link></li>
-              <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive ? 'active-link' : undefined)}
+                >
+                  Booking
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="#"
+                  onClick={handleLogout}
+                  data-testid="logout"
+                  className="logout-link"
+                >
+                  Logout
+                </NavLink>
+              </li>
             </>
           )}
           {userRole === 'admin' && (
             <>
-              <li><Link to="/bookings">Bookings</Link></li>
-              <li><Link to="/settings">Settings</Link></li>
-              <li><Link to="#" onClick={handleLogout} data-testid="logout">Logout</Link></li>
+              <li>
+                <NavLink
+                  to="/bookings"
+                  className={({ isActive }) => (isActive ? 'active-link' : undefined)}
+                >
+                  Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/settings"
+                  className={({ isActive }) => (isActive ? 'active-link' : undefined)}
+                >
+                  Settings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="#"
+                  onClick={handleLogout}
+                  data-testid="logout"
+                  className="logout-link"
+                >
+                  Logout
+                </NavLink>
+              </li>
             </>
           )}
         </ul>
@@ -101,7 +156,6 @@ const Navbar = () => {
           .navbar-spacing {
             height: 30px;
           }
-
         `}
       </style>
     </>

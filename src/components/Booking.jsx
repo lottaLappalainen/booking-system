@@ -13,7 +13,7 @@ const Booking = () => {
   const { bookings, user, TIME_SLOTS } = useSelector((state) => ({
     bookings: state.bookings || [],
     user: state.auth,
-    TIME_SLOTS: state.timeSlots
+    TIME_SLOTS: state.timeSlots,
   }));
 
   useEffect(() => {
@@ -34,6 +34,14 @@ const Booking = () => {
     if (bookedTimes.length === TIME_SLOTS.length) return "day-full";
     if (bookedTimes.length > 0) return "day-partial";
     return null;
+  };
+
+  const tileDisabled = ({ date, view }) => {
+    if (view === "month") {
+      // Disable past dates
+      return date < new Date().setHours(0, 0, 0, 0);
+    }
+    return false;
   };
 
   const handleDateChange = (date) => {
@@ -67,9 +75,10 @@ const Booking = () => {
         className="calendar"
         onClickDay={handleDateChange}
         tileClassName={tileClassName}
+        tileDisabled={tileDisabled}
       />
       <p>Selected Date: {selectedDate ? selectedDate.toDateString() : "None"}</p>
-      {selectedDate && availableTimes.length > 0 && (
+      {selectedDate && availableTimes.length > 0 && user.role !== "guest" && (
         <div>
           <h3>Available Times</h3>
           <select
@@ -93,7 +102,10 @@ const Booking = () => {
               onChange={(e) => setBookingName(e.target.value)}
             />
           </div>
-          <button onClick={handleBooking} disabled={!selectedTime || !bookingName}>
+          <button
+            onClick={handleBooking}
+            disabled={!selectedTime || !bookingName || user.role === "guest"}
+          >
             Book
           </button>
         </div>
@@ -101,6 +113,7 @@ const Booking = () => {
       {selectedDate && availableTimes.length === 0 && (
         <p>All time slots for this date are fully booked.</p>
       )}
+      {user.role === "guest" && <p>Guests cannot make bookings.</p>}
       <style>
         {`
           .booking-container {
@@ -130,6 +143,6 @@ const Booking = () => {
       </style>
     </div>
   );
-}  
+};
 
 export default Booking;

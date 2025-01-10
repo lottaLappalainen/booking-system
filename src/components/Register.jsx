@@ -40,7 +40,7 @@ const Register = () => {
       await dispatch(registerUser(requestData));
       dispatch(setNotification({ message: 'Registration successful', stateType: 'auth', requestStatus: 'success' }));
       await dispatch(fetchUserStatus());
-    }catch (error) {
+    } catch (error) {
       if (error.response && error.response.data) {
         dispatch(setNotification({ message: 'Email is already in use', stateType: 'auth', requestStatus: 'error' }));
       } else {
@@ -51,10 +51,10 @@ const Register = () => {
   };
 
   return (
-    <div data-testid="form-container">
+    <div className="form-container" data-testid="form-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -66,7 +66,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -78,7 +78,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -90,7 +90,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="passwordConfirmation">Password Confirmation:</label>
           <input
             type="password"
@@ -103,10 +103,58 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit" data-testid="submit">
+        <button type="submit" className="btn" data-testid="submit">
           Register
         </button>
       </form>
+      <style>
+        {`
+          .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+          h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+          }
+          .form-group {
+            margin-bottom: 15px;
+          }
+          label {
+            text-align: left;
+          }
+          .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+          }
+          .form-group input {
+            width: 94%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background-color: #218838;
+          }
+        `}
+      </style>
     </div>
   );
 };

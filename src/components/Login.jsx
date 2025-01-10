@@ -42,10 +42,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit} data-testid="form-container">
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -56,7 +56,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
           <input
             type="password"
@@ -67,8 +67,56 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" data-testid="submit">Login</button>
+        <button type="submit" className="btn" data-testid="submit">Login</button>
       </form>
+      <style>
+        {`
+          .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+          h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+          }
+          label {
+            text-align: left;
+          }
+          .form-group {
+            margin-bottom: 15px;
+          }
+          .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+          }
+          .form-group input {
+            width: 94%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background-color: #0056b3;
+          }
+        `}
+      </style>
     </div>
   );
 };

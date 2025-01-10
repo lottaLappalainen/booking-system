@@ -75,33 +75,48 @@ const Bookingslist = () => {
         </div>
       )}
       <style>
-        {`
-          .booking-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-          }
-          .day-full {
-            background-color:rgb(212, 124, 124);
-            color: white;
-          }
-          .day-partial {
-            background-color: #fff5b7; 
-            color: black;
-          }
-          .booking-details {
-            margin-top: 20px;
-          }
-          .booking-details ul {
-            list-style: none;
-            padding: 0;
-          }
-          .booking-details li {
-            margin: 5px 0;
-          }
-        `}
-      </style>
+      {`
+        .booking-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .day-full {
+          background-color: rgb(212, 124, 124);
+          color: white;
+        }
+        .day-partial {
+          background-color: #fff5b7; 
+          color: black;
+        }
+        .booking-details {
+          margin-top: 20px;
+          width: 40%;
+          max-width: 600px;
+          padding: 20px;
+        }
+        .booking-details h2 {
+          text-align: center;
+          color: #333;
+        }
+        .booking-details ul {
+          list-style: none;
+          padding: 0;
+        }
+        .booking-details li {
+          margin: 5px 0;
+          padding: 10px;
+          background-color: #eef;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          font-size: 14px;
+        }
+        .booking-details li:nth-child(odd) {
+          background-color: #dde;
+        }
+      `}
+    </style>
     </div>
   );
 };

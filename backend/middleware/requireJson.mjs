@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const log = debug('assignment-backend:json-middleware');
+const log = debug('json-middleware');
 
 const requireJson = (req, res, next) => {
   if (!req.accepts('json')) {

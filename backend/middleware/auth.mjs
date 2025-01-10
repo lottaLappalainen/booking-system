@@ -1,7 +1,7 @@
 import debug from 'debug';
 import { User } from '../models/user.mjs';
 
-const log = debug('assignment-backend:auth-middleware');
+const log = debug('auth-middleware-');
 
 const getTokenFromCookie = req => {
   if (!('signedCookies' in req) || !req.signedCookies.token) {

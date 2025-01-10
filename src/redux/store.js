@@ -4,6 +4,7 @@ import authReducer from "../reducers/authReducer";
 import notificationReducer from "../reducers/notificationReducer";
 import bookingsReducer from "../reducers/bookingReducer"
 import timeSlotReducer from "../reducers/timeSlotReducer"
+import blockingReducer from "../reducers/blockingReducer"
 
 import { composeWithDevTools } from "@redux-devtools/extension";
 
@@ -12,6 +13,7 @@ export const reducers = combineReducers({
   notification: notificationReducer,
   bookings: bookingsReducer,
   timeSlots: timeSlotReducer,
+  blockedDates: blockingReducer,
 });
 
 

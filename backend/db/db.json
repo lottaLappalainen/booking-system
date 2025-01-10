@@ -27,6 +27,13 @@
       "email": "moikkuli@email.com",
       "password": "$2a$10$PLDWOMonL2kCU11kWNVzaeRNbiHeQs8m8uIEgG2.pdJbJAFx.hl..",
       "role": "customer"
+    },
+    {
+      "id": "368eb170cf7111efba7ce36062a0fecd",
+      "name": "antti",
+      "email": "antti@email.com",
+      "password": "$2a$10$f2Zrerb1532xCrr87a.JgOsG6biD3L6aNZGXuuM9VF3hYbzgtIVHO",
+      "role": "customer"
     }
   ]
 }
